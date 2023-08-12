@@ -42,13 +42,35 @@ Plot the performance plot
 
 Evaluate the model with the testing data.
 
-## PROGRAM
+## PROGRAM:
+```
+Developed By: G Venkata Pavan Kumar
+RegNo: 212221240013
+```
 
-Include your code here
+```
+from google.colab import auth
+import gspread
+from google.auth import default
+import pandas as pd
 
+auth.authenticate_user()
+creds, _ = default()
+gc = gspread.authorize(creds)
+
+worksheet = gc.open('StudentsData').sheet1
+
+rows = worksheet.get_all_values()
+
+df = pd.DataFrame(rows[1:], columns=rows[0])
+df = df.astype({'Input':'float'})
+df = df.astype({'Output':'float'})
+df.head()
+
+```
 ## Dataset Information
 
-Include screenshot of the dataset
+<img width="957" alt="image" src="https://github.com/Pavan-Gv/basic-nn-model/assets/94827772/c6e69dbf-e49b-4a30-914d-be56eb357e04">
 
 ## OUTPUT
 
