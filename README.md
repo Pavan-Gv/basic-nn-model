@@ -43,46 +43,33 @@ from tensorflow.keras.layers import Dense
 from google.colab import auth
 import gspread
 from google.auth import default
-
 auth.authenticate_user()
 creds, _ = default()
-
 gc = gspread.authorize(creds)
 worksheet = gc.open('dl').sheet1
 data = worksheet.get_all_values()
-
 dataset = pd.DataFrame(data[1:], columns=data[0])
 dataset = dataset.astype({'Input':'float'})
 dataset = dataset.astype({'Output':'float'})
 dataset.head()
-
 X = dataset[['Input']].values
 Y = dataset[['Output']].values
-
 x_train,x_test,y_train,y_test = train_test_split(X,Y,test_size = 0.33,random_state = 20)
-
 Scaler = MinMaxScaler()
 Scaler.fit(x_train)
-
 x_train_scale = Scaler.transform(x_train)
-
 my_brain = Sequential([
     Dense(units = 4, activation = 'relu' , input_shape=[1]),
     Dense(units = 6),
     Dense(units = 1)
 
 ])
-
 my_brain.compile(optimizer='rmsprop',loss='mse')
-
 my_brain.fit(x=x_train_scale,y=y_train,epochs=20000)
-
 loss_df = pd.DataFrame(my_brain.history.history)
 loss_df.plot()
-
 x_test1 = Scaler.transform(x_test)
 my_brain.evaluate(x_test1,y_test)
-
 X_n1 = [[30]]
 input_scaled = Scaler.transform(X_n1)
 my_brain.predict(input_scaled)
