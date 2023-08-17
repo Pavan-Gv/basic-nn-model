@@ -14,9 +14,9 @@ Include the neural network model diagram.
 
 ## DESIGN STEPS
 
-<b>STEP 1:</b> Loading the dataset
+<b>STEP 1:</b> Loading the dataset.
 
-<b>STEP 2:</b> Split the dataset into training and testing
+<b>STEP 2:</b> Split the dataset into training and testing.
 
 <b>STEP 3:</b> Create MinMaxScalar objects ,fit the model and transform the data.
 
@@ -24,7 +24,7 @@ Include the neural network model diagram.
 
 <b>STEP 5:</b> Train the model with the training data.
 
-<b>STEP 6:</b> Plot the performance plot
+<b>STEP 6:</b> Plot the performance plot.
 
 <b>STEP 7:</b> Evaluate the model with the testing data.
 
