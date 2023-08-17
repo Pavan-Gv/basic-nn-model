@@ -10,7 +10,7 @@ Explain the problem statement
 
 ## Neural Network Model
 
-Include the neural network model diagram.
+<img width="544" alt="DL Output" src="https://github.com/Pavan-Gv/basic-nn-model/assets/94827772/a7e7085f-698d-45dd-b342-b7f3775b9a2e">
 
 ## DESIGN STEPS
 
