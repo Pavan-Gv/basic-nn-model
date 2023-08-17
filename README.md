@@ -70,20 +70,22 @@ df.head()
 ```
 ## Dataset Information
 
-<img width="957" alt="image" src="https://github.com/Pavan-Gv/basic-nn-model/assets/94827772/c6e69dbf-e49b-4a30-914d-be56eb357e04">
+<img width="138" alt="image" src="https://github.com/Pavan-Gv/basic-nn-model/assets/94827772/21d61956-2559-465a-8c8b-ac0f1d11e652">
 
-## OUTPUT
+## OUTPUT:
 
 ### Training Loss Vs Iteration Plot
 
-Include your plot here
+<img width="327" alt="image" src="https://github.com/Pavan-Gv/basic-nn-model/assets/94827772/d2cf233c-906c-4cd3-a0bf-0b6569a3898d">
 
 ### Test Data Root Mean Squared Error
 
-Find the test data root mean squared error
+<img width="326" alt="image" src="https://github.com/Pavan-Gv/basic-nn-model/assets/94827772/1b1d5640-5dc8-4c5a-b378-19888609f810">
+
 
 ### New Sample Data Prediction
 
-Include your sample input and output here
+<img width="233" alt="image" src="https://github.com/Pavan-Gv/basic-nn-model/assets/94827772/7e72c01d-7ba7-4b2d-b4f4-8409f115b730">
 
-## RESULT
+## RESULT:
+Therefore We successfully developed a neural network regression model for the given dataset.
