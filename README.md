@@ -14,25 +14,15 @@ Include the neural network model diagram.
 
 ## DESIGN STEPS
 
-### STEP 1:
+STEP 1: Loading the dataset
 
-Loading the dataset
+STEP 2: Split the dataset into training and testing
 
-### STEP 2:
+STEP 3: Create MinMaxScalar objects ,fit the model and transform the data.
 
-Split the dataset into training and testing
+STEP 4: Build the Neural Network Model and compile the model.
 
-### STEP 3:
-
-Create MinMaxScalar objects ,fit the model and transform the data.
-
-### STEP 4:
-
-Build the Neural Network Model and compile the model.
-
-### STEP 5:
-
-Train the model with the training data.
+STEP 5: Train the model with the training data.
 
 ### STEP 6:
 
@@ -49,24 +39,57 @@ RegNo: 212221240013
 ```
 
 ```
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import MinMaxScaler
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense
 from google.colab import auth
 import gspread
 from google.auth import default
-import pandas as pd
 
 auth.authenticate_user()
 creds, _ = default()
+
 gc = gspread.authorize(creds)
+worksheet = gc.open('dl').sheet1
+data = worksheet.get_all_values()
 
-worksheet = gc.open('StudentsData').sheet1
+dataset = pd.DataFrame(data[1:], columns=data[0])
+dataset = dataset.astype({'Input':'float'})
+dataset = dataset.astype({'Output':'float'})
+dataset.head()
 
-rows = worksheet.get_all_values()
+X = dataset[['Input']].values
+Y = dataset[['Output']].values
 
-df = pd.DataFrame(rows[1:], columns=rows[0])
-df = df.astype({'Input':'float'})
-df = df.astype({'Output':'float'})
-df.head()
+x_train,x_test,y_train,y_test = train_test_split(X,Y,test_size = 0.33,random_state = 20)
 
+Scaler = MinMaxScaler()
+Scaler.fit(x_train)
+
+x_train_scale = Scaler.transform(x_train)
+
+my_brain = Sequential([
+    Dense(units = 4, activation = 'relu' , input_shape=[1]),
+    Dense(units = 6),
+    Dense(units = 1)
+
+])
+
+my_brain.compile(optimizer='rmsprop',loss='mse')
+
+my_brain.fit(x=x_train_scale,y=y_train,epochs=20000)
+
+loss_df = pd.DataFrame(my_brain.history.history)
+loss_df.plot()
+
+x_test1 = Scaler.transform(x_test)
+my_brain.evaluate(x_test1,y_test)
+
+X_n1 = [[30]]
+input_scaled = Scaler.transform(X_n1)
+my_brain.predict(input_scaled)
 ```
 ## Dataset Information
 
